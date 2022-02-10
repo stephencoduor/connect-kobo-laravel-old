@@ -73,7 +73,7 @@ class TeamCrudController extends CrudController
         CRUD::field('description')->type('textarea')->label('Enter a brief description of the team');
         CRUD::field('avatar')->type('image')->crop(true)->upload(true)->disk('team')->label('Upload a cover image for the main team page');
 
-        CRUD::field('creator_id')->type('hidden')->value(Auth::user()->id);
+        CRUD::field('creator_id')->type('hidden')->value(backpack_user()->id);
         CRUD::field('status')->type('hidden')->value(1);
     }
 
@@ -98,11 +98,11 @@ class TeamCrudController extends CrudController
         ]);
     }
 
-//    public function show(Team $id): Factory|View|Application
-//    {
-//        // TODO: create teams.show view or view component... (component better to let devs drop it into where-ever on each platform)
-//        return view('teams.show', ['team' => $id]);
-//    }
+    //    public function show(Team $id): Factory|View|Application
+    //    {
+    //        // TODO: create teams.show view or view component... (component better to let devs drop it into where-ever on each platform)
+    //        return view('teams.show', ['team' => $id]);
+    //    }
 
     public function getForms($team)
     {

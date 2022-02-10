@@ -198,6 +198,6 @@ class SubmissionCrudController extends CrudController
 
     public function reprocessSubmission(Submission $submission): void
     {
-        ProcessSubmission::dispatchSync($submission, auth()->user());
+        ProcessSubmission::dispatchSync($submission, backpack_user());
     }
 }

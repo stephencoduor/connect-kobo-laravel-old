@@ -57,7 +57,7 @@ class TeamXlsformCrudController extends CrudController
         CRUD::column('kobo_id')->label('Kobo Form ID')->wrapper([
             'href' => function ($crud, $column, $entry) {
                 if ($entry->kobo_id) {
-                    return 'https://kf.kobotoolbox.org/#/forms/'.$entry->kobo_id;
+                    return 'https://kf.kobotoolbox.org/#/forms/' . $entry->kobo_id;
                 }
 
                 return '#';
@@ -82,16 +82,16 @@ class TeamXlsformCrudController extends CrudController
 
 
         Crud::button('deploy')
-        ->stack('line')
-        ->view('kobo-link::crud.buttons.xlsforms.deploy');
+            ->stack('line')
+            ->view('kobo-link::crud.buttons.xlsforms.deploy');
 
         Crud::button('sync')
-        ->stack('line')
-        ->view('kobo-link::crud.buttons.xlsforms.sync');
+            ->stack('line')
+            ->view('kobo-link::crud.buttons.xlsforms.sync');
 
         Crud::button('archive')
-        ->stack('line')
-        ->view('kobo-link::crud.buttons.xlsforms.archive');
+            ->stack('line')
+            ->view('kobo-link::crud.buttons.xlsforms.archive');
 
         $form = $this->crud->getCurrentEntry();
 
@@ -104,17 +104,17 @@ class TeamXlsformCrudController extends CrudController
 
     public function deployToKobo(TeamXlsform $form): JsonResponse
     {
-        DeployFormToKobo::dispatch($form, auth()->user());
+        DeployFormToKobo::dispatch($form, backpack_user());
 
         return response()->json([
             'title' => $form->title,
-            'user' => auth()->user()->email,
+            'user' => backpack_user()->email,
         ]);
     }
 
     public function syncData(TeamXlsform $form): string
     {
-        GetDataFromKobo::dispatchSync($form, auth()->user());
+        GetDataFromKobo::dispatchSync($form, backpack_user());
 
         $submissions = $form->submissions;
 
@@ -130,11 +130,11 @@ class TeamXlsformCrudController extends CrudController
 
     public function archiveOnKobo(TeamXlsform $form): JsonResponse
     {
-        ArchiveKoboForm::dispatch($form, auth()->user());
+        ArchiveKoboForm::dispatch($form, backpack_user());
 
         return response()->json([
             'title' => $form->title,
-            'user' => auth()->user()->email,
+            'user' => backpack_user()->email,
         ]);
     }
 }

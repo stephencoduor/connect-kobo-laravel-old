@@ -39,7 +39,7 @@
 
 @if (auth() -> check() && config('kobo-link.echo'))
 <script>
-    Echo.private("App.Models.User.{{ auth()->user()->id }}")
+    Echo.private("App.Models.User.{{ backpack_user()->id }}")
 
         // DEPLOYMENT MESSAGES
         .listen('KoboDeploymentReturnedSuccess', (e) => {
