@@ -1,4 +1,6 @@
-<?php /** @noinspection PsalmGlobal */
+<?php
+
+/** @noinspection PsalmGlobal */
 
 namespace Stats4sd\KoboLink\Models;
 
@@ -26,7 +28,7 @@ class Team extends Model
         foreach ($emails as $email) {
             $this->invites()->create([
                 'email' => $email,
-                'inviter_id' => auth()->id(),
+                'inviter_id' => backpack_auth()->id(),
                 'token' => Str::random(24),
             ]);
         }

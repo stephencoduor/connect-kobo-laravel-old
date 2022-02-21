@@ -14,7 +14,7 @@ class TeamRequest extends FormRequest
     public function authorize(): bool
     {
         // only allow updates if the user can update the current team
-        return auth()->check();
+        return backpack_auth()->check();
     }
 
     /**
@@ -25,7 +25,7 @@ class TeamRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required','max:255'],
+            'name' => ['required', 'max:255'],
             'creator_id' => ['sometimes', 'required', 'exists:users,id'],
             'description' => ['required', 'string', 'max:65000'],
             'avatar' => ['sometimes'],

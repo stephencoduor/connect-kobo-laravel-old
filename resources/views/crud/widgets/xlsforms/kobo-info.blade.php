@@ -37,7 +37,7 @@
 
 <script src="{{ asset('js/echo.js') }}"></script>
 
-@if (auth() -> check() && config('kobo-link.echo'))
+@if (backpack_auth()->check() && config('kobo-link.echo'))
 <script>
     Echo.private("App.Models.User.{{ backpack_user()->id }}")
 
